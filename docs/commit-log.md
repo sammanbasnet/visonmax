@@ -8,3 +8,4 @@
 - Entry 06: Add incremental log entry.
 - Entry 07: Add incremental log entry.
 - Entry 08: Add incremental log entry.
+- Entry 09: Add incremental log entry.
