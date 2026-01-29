@@ -56,13 +56,15 @@ exports.getSellerOrders = async (req, res, next) => {
         const sellerId = req.user.id.toString();
 
         const filteredOrders = orders.filter(order => {
-            return order.items.some(item =>
-                item.product && item.product.addedBy && item.product.addedBy.toString() === sellerId
-            );
+            return order.items.some(item => {
+                if (item.seller && item.seller.toString() === sellerId) return true;
+                return item.product && item.product.addedBy && item.product.addedBy.toString() === sellerId;
+            });
         }).map(order => {
-            const myItems = order.items.filter(item =>
-                item.product && item.product.addedBy && item.product.addedBy.toString() === sellerId
-            );
+            const myItems = order.items.filter(item => {
+                if (item.seller && item.seller.toString() === sellerId) return true;
+                return item.product && item.product.addedBy && item.product.addedBy.toString() === sellerId;
+            });
 
             const sellerTotal = myItems.reduce((acc, item) => acc + (item.price || 0), 0);
 
