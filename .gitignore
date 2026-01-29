@@ -1,0 +1,19 @@
+node_modules/
+dist/
+dist-ssr/
+*.log
+*.local
+.env
+.env.*
+
+# SSL certificates
+*.pem
+*.pfx
+*.key
+*.crt
+client/ssl/
+
+# OS/editor
+.DS_Store
+.vscode/
+.idea/
