@@ -5,3 +5,4 @@
 - Entry 03: Add incremental log entry.
 - Entry 04: Add incremental log entry.
 - Entry 05: Add incremental log entry.
+- Entry 06: Add incremental log entry.
