@@ -131,7 +131,11 @@ exports.payWithBalance = async (req, res, next) => {
             product.quantity = Math.max(0, product.quantity - 1);
             if (product.quantity === 0) product.isSold = true;
             await product.save();
-            orderItems.push({ product: product._id, price: product.price });
+            orderItems.push({
+                product: product._id,
+                seller: product.addedBy,
+                price: product.price
+            });
         }
 
         const order = await Order.create({
@@ -255,7 +259,11 @@ exports.verifyEsewa = async (req, res, next) => {
                 if (product.quantity === 0) product.isSold = true;
                 await product.save();
                 totalAmount += product.price;
-                orderItems.push({ product: product._id, price: product.price });
+                orderItems.push({
+                    product: product._id,
+                    seller: product.addedBy,
+                    price: product.price
+                });
             }
         }
 
@@ -330,6 +338,7 @@ exports.confirmOrder = async (req, res, next) => {
                 totalAmount += product.price;
                 orderItems.push({
                     product: product._id,
+                    seller: product.addedBy,
                     price: product.price
                 });
             }
